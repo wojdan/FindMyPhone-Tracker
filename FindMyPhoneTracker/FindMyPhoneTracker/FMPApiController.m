@@ -28,32 +28,33 @@
     return __sharedInstance;
 }
 
-/* PRZYKŁADOWA METODA POST - definicja
 
-+ (void)registerUserWithEmailAddress:(NSString *)emailAddress password:(NSString *)password completionHandler:(void (^)(BOOL, NSError *))handler {
++ (void)postUserLocation:(CLLocation*)location completionHandler:(void (^)(BOOL success, NSError *error))handler {
+
+    NSParameterAssert(location);
 
     NSMutableDictionary *parameters = [@{
-                                         @"email" : emailAddress,
-                                         @"password"  : password
+                                         @"lat" : @(location.coordinate.latitude),
+                                         @"lng"  : @(location.coordinate.longitude)
                                          } mutableCopy];
 
     [SVProgressHUD show];
-    [[FMPApiController sharedInstance] POST:@"testRegister" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[FMPApiController sharedInstance] POST:@"testTracker" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
         [SVProgressHUD showSuccessWithStatus:responseObject[@"message"]];
 
-        NSLog(@"Registration successfull.\nResponse object:\n%@", responseObject);
+        NSLog(@"Request successul :) \nResponse object:\n%@", responseObject);
         handler(YES, nil);
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
         [SVProgressHUD showErrorWithStatus:operation.responseObject[@"message"] ? : [error localizedDescription]];
 
-        NSLog(@"Registration unsuccessfull!\nResponse error:\n%@", error);
+        NSLog(@"Request unsuccessful :(\nResponse error:\n%@", error);
         handler(NO, error);
 
     }];
 
-} */
+}
 
 @end

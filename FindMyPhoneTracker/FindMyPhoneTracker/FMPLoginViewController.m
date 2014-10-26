@@ -10,6 +10,7 @@
 
 #import "FMPLoginViewController.h"
 #import "FMPHelpers.h"
+#import "FMPTestTrackerViewController.h"
 
 #import "SVProgressHUD.h"
 
@@ -153,14 +154,14 @@
 
 - (IBAction)signInButtonClicked:(id)sender {
 
+    /* Uncomment to turn on validation
     if (![self loginFormValid]) {
         return;
-    }
+    }*/
 
-    UIViewController *vc = [UIViewController new];
-    vc.view.backgroundColor = [UIColor whiteColor];
+    FMPTestTrackerViewController *testTrackerVC = [[UIStoryboard storyboardWithName:@"TestTrackerViewController" bundle:nil] instantiateInitialViewController];
 
-    [AppDelegate setRootViewController:vc];
+    [AppDelegate setRootViewController:testTrackerVC];
 
     NSLog(@"Zalogowono");
 

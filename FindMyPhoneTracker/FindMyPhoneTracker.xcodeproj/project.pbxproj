@@ -19,6 +19,10 @@
 		849061D119FD5257005509A6 /* FMPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 849061CA19FD5257005509A6 /* FMPTextField.m */; };
 		849061D319FD5257005509A6 /* LoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849061CC19FD5257005509A6 /* LoginViewController.storyboard */; };
 		849061DE19FD53B6005509A6 /* iconTracker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 849061DD19FD53B6005509A6 /* iconTracker@2x.png */; };
+		849061E019FD5C7E005509A6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849061DF19FD5C7E005509A6 /* MapKit.framework */; };
+		849061E219FD5C84005509A6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849061E119FD5C84005509A6 /* CoreLocation.framework */; };
+		849061E719FD6098005509A6 /* FMPTestTrackerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849061E619FD6098005509A6 /* FMPTestTrackerViewController.m */; };
+		849061E919FD60B0005509A6 /* TestTrackerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849061E819FD60B0005509A6 /* TestTrackerViewController.storyboard */; };
 		EBC9293E365D424BB6B8B3E1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C340EB15374A5DBBDD9A2E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +61,11 @@
 		849061CA19FD5257005509A6 /* FMPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMPTextField.m; sourceTree = "<group>"; };
 		849061CC19FD5257005509A6 /* LoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginViewController.storyboard; sourceTree = "<group>"; };
 		849061DD19FD53B6005509A6 /* iconTracker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconTracker@2x.png"; sourceTree = "<group>"; };
+		849061DF19FD5C7E005509A6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		849061E119FD5C84005509A6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		849061E519FD6098005509A6 /* FMPTestTrackerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMPTestTrackerViewController.h; sourceTree = "<group>"; };
+		849061E619FD6098005509A6 /* FMPTestTrackerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMPTestTrackerViewController.m; sourceTree = "<group>"; };
+		849061E819FD60B0005509A6 /* TestTrackerViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TestTrackerViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849061E219FD5C84005509A6 /* CoreLocation.framework in Frameworks */,
+				849061E019FD5C7E005509A6 /* MapKit.framework in Frameworks */,
 				EBC9293E365D424BB6B8B3E1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +92,8 @@
 		5D2787C77F2F46C884E51EF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				849061E119FD5C84005509A6 /* CoreLocation.framework */,
+				849061DF19FD5C7E005509A6 /* MapKit.framework */,
 				66C340EB15374A5DBBDD9A2E /* libPods.a */,
 			);
 			name = Frameworks;
@@ -115,8 +128,8 @@
 				849061AA19FD50CF005509A6 /* LaunchScreen.xib */,
 				849061D419FD525D005509A6 /* API and Model */,
 				849061D519FD526C005509A6 /* Subclasses */,
-				849061D619FD527A005509A6 /* Helpers */,
 				849061D719FD5281005509A6 /* ViewControllers */,
+				849061D619FD527A005509A6 /* Helpers */,
 				849061D819FD528D005509A6 /* gfx */,
 				8490619B19FD50CF005509A6 /* Supporting Files */,
 			);
@@ -181,9 +194,8 @@
 		849061D719FD5281005509A6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				849061C719FD5257005509A6 /* FMPLoginViewController.h */,
-				849061C819FD5257005509A6 /* FMPLoginViewController.m */,
-				849061CC19FD5257005509A6 /* LoginViewController.storyboard */,
+				849061E419FD605E005509A6 /* TestTracker */,
+				849061E319FD6055005509A6 /* Login */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -194,6 +206,26 @@
 				849061DD19FD53B6005509A6 /* iconTracker@2x.png */,
 			);
 			name = gfx;
+			sourceTree = "<group>";
+		};
+		849061E319FD6055005509A6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				849061C719FD5257005509A6 /* FMPLoginViewController.h */,
+				849061C819FD5257005509A6 /* FMPLoginViewController.m */,
+				849061CC19FD5257005509A6 /* LoginViewController.storyboard */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		849061E419FD605E005509A6 /* TestTracker */ = {
+			isa = PBXGroup;
+			children = (
+				849061E519FD6098005509A6 /* FMPTestTrackerViewController.h */,
+				849061E619FD6098005509A6 /* FMPTestTrackerViewController.m */,
+				849061E819FD60B0005509A6 /* TestTrackerViewController.storyboard */,
+			);
+			name = TestTracker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849061E919FD60B0005509A6 /* TestTrackerViewController.storyboard in Resources */,
 				849061DE19FD53B6005509A6 /* iconTracker@2x.png in Resources */,
 				849061AC19FD50CF005509A6 /* LaunchScreen.xib in Resources */,
 				849061D319FD5257005509A6 /* LoginViewController.storyboard in Resources */,
@@ -339,6 +372,7 @@
 				849061CF19FD5257005509A6 /* FMPHelpers.m in Sources */,
 				849061A119FD50CF005509A6 /* AppDelegate.m in Sources */,
 				8490619E19FD50CF005509A6 /* main.m in Sources */,
+				849061E719FD6098005509A6 /* FMPTestTrackerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,7 +440,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -441,7 +475,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

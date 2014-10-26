@@ -7,6 +7,7 @@
 //
 
 #import "AFNetworking.h"
+#import <CoreLocation/CoreLocation.h>
 
 #define API_BASE_URL @"http://find-my-phone-api.herokuapp.com/api/v1/"
 
@@ -14,8 +15,6 @@
 
 + (instancetype)sharedInstance;
 
-/* PRZYKŁADOWA METODA POST - deklaracja
-+ (void)registerUserWithEmailAddress:(NSString*)emailAddress password:(NSString*)password completionHandler:(void (^)(BOOL success, NSError *error))handler;
- */
++ (void)postUserLocation:(CLLocation*)location completionHandler:(void (^)(BOOL success, NSError *error))handler;
 
 @end

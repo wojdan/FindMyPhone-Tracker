@@ -1,6 +1,6 @@
 //
 //  FMPApiController.m
-//  FindMyPhoneClient
+//  FindMyPhoneTracker
 //
 //  Created by Wojdan on 25.10.2014.
 //  Copyright (c) 2014 wojdan. All rights reserved.
@@ -28,6 +28,8 @@
     return __sharedInstance;
 }
 
+/* PRZYKŁADOWA METODA POST - definicja
+
 + (void)registerUserWithEmailAddress:(NSString *)emailAddress password:(NSString *)password completionHandler:(void (^)(BOOL, NSError *))handler {
 
     NSMutableDictionary *parameters = [@{
@@ -52,6 +54,6 @@
 
     }];
 
-}
+} */
 
 @end

@@ -1,6 +1,6 @@
 //
 //  FMPHelpers.h
-//  FindMyPhoneClient
+//  FindMyPhoneTracker
 //
 //  Created by Wojdan on 26.10.2014.
 //  Copyright (c) 2014 wojdan. All rights reserved.

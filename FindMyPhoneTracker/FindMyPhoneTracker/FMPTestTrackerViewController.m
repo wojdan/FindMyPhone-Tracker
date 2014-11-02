@@ -48,6 +48,12 @@
     self.controlView.layer.borderWidth = 0.5f;
 }
 
+- (void)dealloc {
+    self.timer = nil;
+    [self.locationManager stopUpdatingLocation];
+    self.locationManager = nil;
+}
+
 #pragma mark - CLLogationManagerDelegate
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {

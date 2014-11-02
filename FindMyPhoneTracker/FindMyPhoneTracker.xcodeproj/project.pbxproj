@@ -23,6 +23,9 @@
 		849061E219FD5C84005509A6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849061E119FD5C84005509A6 /* CoreLocation.framework */; };
 		849061E719FD6098005509A6 /* FMPTestTrackerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849061E619FD6098005509A6 /* FMPTestTrackerViewController.m */; };
 		849061E919FD60B0005509A6 /* TestTrackerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849061E819FD60B0005509A6 /* TestTrackerViewController.storyboard */; };
+		84BF719D1A0664850032D235 /* FMPDefaultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BF71991A0664840032D235 /* FMPDefaultsController.m */; };
+		84BF719E1A0664850032D235 /* FMPNewDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BF719B1A0664840032D235 /* FMPNewDeviceViewController.m */; };
+		84BF719F1A0664850032D235 /* NewDeviceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84BF719C1A0664840032D235 /* NewDeviceViewController.storyboard */; };
 		EBC9293E365D424BB6B8B3E1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C340EB15374A5DBBDD9A2E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +69,11 @@
 		849061E519FD6098005509A6 /* FMPTestTrackerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMPTestTrackerViewController.h; sourceTree = "<group>"; };
 		849061E619FD6098005509A6 /* FMPTestTrackerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMPTestTrackerViewController.m; sourceTree = "<group>"; };
 		849061E819FD60B0005509A6 /* TestTrackerViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TestTrackerViewController.storyboard; sourceTree = "<group>"; };
+		84BF71981A0664840032D235 /* FMPDefaultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMPDefaultsController.h; sourceTree = "<group>"; };
+		84BF71991A0664840032D235 /* FMPDefaultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMPDefaultsController.m; sourceTree = "<group>"; };
+		84BF719A1A0664840032D235 /* FMPNewDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMPNewDeviceViewController.h; sourceTree = "<group>"; };
+		84BF719B1A0664840032D235 /* FMPNewDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMPNewDeviceViewController.m; sourceTree = "<group>"; };
+		84BF719C1A0664840032D235 /* NewDeviceViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewDeviceViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +175,8 @@
 			children = (
 				849061C119FD5257005509A6 /* FMPApiController.h */,
 				849061C219FD5257005509A6 /* FMPApiController.m */,
+				84BF71981A0664840032D235 /* FMPDefaultsController.h */,
+				84BF71991A0664840032D235 /* FMPDefaultsController.m */,
 			);
 			name = "API and Model";
 			sourceTree = "<group>";
@@ -194,6 +204,7 @@
 		849061D719FD5281005509A6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84BF71A01A0664940032D235 /* New Device */,
 				849061E419FD605E005509A6 /* TestTracker */,
 				849061E319FD6055005509A6 /* Login */,
 			);
@@ -226,6 +237,16 @@
 				849061E819FD60B0005509A6 /* TestTrackerViewController.storyboard */,
 			);
 			name = TestTracker;
+			sourceTree = "<group>";
+		};
+		84BF71A01A0664940032D235 /* New Device */ = {
+			isa = PBXGroup;
+			children = (
+				84BF719A1A0664840032D235 /* FMPNewDeviceViewController.h */,
+				84BF719B1A0664840032D235 /* FMPNewDeviceViewController.m */,
+				84BF719C1A0664840032D235 /* NewDeviceViewController.storyboard */,
+			);
+			name = "New Device";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +335,7 @@
 				849061DE19FD53B6005509A6 /* iconTracker@2x.png in Resources */,
 				849061AC19FD50CF005509A6 /* LaunchScreen.xib in Resources */,
 				849061D319FD5257005509A6 /* LoginViewController.storyboard in Resources */,
+				84BF719F1A0664850032D235 /* NewDeviceViewController.storyboard in Resources */,
 				849061A919FD50CF005509A6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,8 +389,10 @@
 			files = (
 				849061CD19FD5257005509A6 /* FMPApiController.m in Sources */,
 				849061D119FD5257005509A6 /* FMPTextField.m in Sources */,
+				84BF719D1A0664850032D235 /* FMPDefaultsController.m in Sources */,
 				849061CE19FD5257005509A6 /* FMPButton.m in Sources */,
 				849061D019FD5257005509A6 /* FMPLoginViewController.m in Sources */,
+				84BF719E1A0664850032D235 /* FMPNewDeviceViewController.m in Sources */,
 				849061CF19FD5257005509A6 /* FMPHelpers.m in Sources */,
 				849061A119FD50CF005509A6 /* AppDelegate.m in Sources */,
 				8490619E19FD50CF005509A6 /* main.m in Sources */,

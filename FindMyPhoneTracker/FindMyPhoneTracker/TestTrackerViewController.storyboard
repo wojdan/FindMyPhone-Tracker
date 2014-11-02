@@ -77,32 +77,63 @@
                                             <constraint firstItem="qLW-Mz-COq" firstAttribute="leading" secondItem="L6c-DB-vA4" secondAttribute="trailing" id="xpE-Dx-omC"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9d-0k-F9b" customClass="FMPButton">
-                                        <rect key="frame" x="95" y="100" width="130" height="44"/>
-                                        <color key="backgroundColor" red="0.1176470588" green="0.47058823529999999" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="302-jm-Ees">
+                                        <rect key="frame" x="20" y="100" width="280" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9d-0k-F9b" customClass="FMPButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="130" height="44"/>
+                                                <color key="backgroundColor" red="0.1176470588" green="0.47058823529999999" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="130" id="0hG-eI-tRo"/>
+                                                    <constraint firstAttribute="height" constant="44" id="ADn-e0-FaO"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                <state key="normal" title="Send">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sendButtonClicked:" destination="YNm-NX-7SN" eventType="touchUpInside" id="cZD-Xy-7KP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0x-S8-X8F" customClass="FMPButton">
+                                                <rect key="frame" x="150" y="0.0" width="130" height="44"/>
+                                                <color key="backgroundColor" red="0.87029539233576647" green="0.23953581204379562" blue="0.33431227189781021" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="Auk-Ag-L9A"/>
+                                                    <constraint firstAttribute="width" constant="130" id="inS-N6-2Ig"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                <state key="normal" title="Deregister">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deregisterButtonClicked:" destination="YNm-NX-7SN" eventType="touchUpInside" id="aZA-wm-FCO"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="130" id="0hG-eI-tRo"/>
-                                            <constraint firstAttribute="height" constant="44" id="ADn-e0-FaO"/>
+                                            <constraint firstAttribute="bottom" secondItem="L0x-S8-X8F" secondAttribute="bottom" id="Ecf-QV-oQ1"/>
+                                            <constraint firstAttribute="bottom" secondItem="U9d-0k-F9b" secondAttribute="bottom" id="LfW-bt-08h"/>
+                                            <constraint firstAttribute="trailing" secondItem="L0x-S8-X8F" secondAttribute="trailing" id="Tq6-YU-0ke"/>
+                                            <constraint firstItem="U9d-0k-F9b" firstAttribute="leading" secondItem="302-jm-Ees" secondAttribute="leading" id="WwD-TR-vXT"/>
+                                            <constraint firstItem="L0x-S8-X8F" firstAttribute="top" secondItem="302-jm-Ees" secondAttribute="top" id="g8j-qb-yaP"/>
+                                            <constraint firstItem="L0x-S8-X8F" firstAttribute="leading" secondItem="U9d-0k-F9b" secondAttribute="trailing" constant="20" id="kot-BA-JRR"/>
+                                            <constraint firstItem="U9d-0k-F9b" firstAttribute="top" secondItem="302-jm-Ees" secondAttribute="top" id="wB0-ZG-k3g"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                        <state key="normal" title="Send">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="sendButtonClicked:" destination="YNm-NX-7SN" eventType="touchUpInside" id="cZD-Xy-7KP"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="4QN-jw-cTL" firstAttribute="leading" secondItem="3yL-Bs-jVW" secondAttribute="leading" id="1eD-Ly-IYa"/>
                                     <constraint firstAttribute="height" constant="164" id="36h-Dx-cU0"/>
+                                    <constraint firstAttribute="centerX" secondItem="302-jm-Ees" secondAttribute="centerX" id="9qv-Lh-OOh"/>
+                                    <constraint firstItem="302-jm-Ees" firstAttribute="top" secondItem="4QN-jw-cTL" secondAttribute="bottom" constant="20" id="GaF-g5-v2A"/>
                                     <constraint firstAttribute="trailing" secondItem="4QN-jw-cTL" secondAttribute="trailing" id="LhR-kr-tU3"/>
-                                    <constraint firstItem="U9d-0k-F9b" firstAttribute="top" secondItem="4QN-jw-cTL" secondAttribute="bottom" constant="20" id="hW7-Pj-NZL"/>
-                                    <constraint firstAttribute="bottom" secondItem="U9d-0k-F9b" secondAttribute="bottom" constant="20" id="kuq-sI-aCe"/>
-                                    <constraint firstAttribute="centerX" secondItem="U9d-0k-F9b" secondAttribute="centerX" id="m8p-Sd-upE"/>
                                     <constraint firstItem="4QN-jw-cTL" firstAttribute="top" secondItem="3yL-Bs-jVW" secondAttribute="top" constant="20" id="wGU-iP-e4A"/>
+                                    <constraint firstAttribute="bottom" secondItem="302-jm-Ees" secondAttribute="bottom" constant="20" id="xRR-fO-aJw"/>
                                 </constraints>
                             </view>
                         </subviews>

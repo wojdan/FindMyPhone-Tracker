@@ -110,5 +110,14 @@
     }];
 
 }
+- (IBAction)deregisterButtonClicked:(id)sender {
+
+    [FMPApiController deregisterCurrentDevice:^(BOOL deregistered, NSError *error) {
+        if (deregistered) {
+            [FMPApiController logout];
+        }
+    }];
+
+}
 
 @end

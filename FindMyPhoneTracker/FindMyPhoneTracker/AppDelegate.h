@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 + (void)setRootViewController:(UIViewController*)viewController;
++ (void)showLoginViewController;
 
 @end
 

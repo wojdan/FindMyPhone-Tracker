@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Ka8-5o-FYk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="CUG-Dn-hov">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Forgot password-->
+        <!--Login-->
         <scene sceneID="6HX-aI-ysX">
             <objects>
-                <viewController title="Forgot password" id="CUG-Dn-hov" customClass="FMPLoginViewController" sceneMemberID="viewController">
+                <viewController title="Login" id="CUG-Dn-hov" customClass="FMPLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aja-nw-h9W"/>
                         <viewControllerLayoutGuide type="bottom" id="lYH-71-c8w"/>
@@ -18,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRG-qz-ixZ">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hfr-AJ-iJ2">
-                                        <rect key="frame" x="0.0" y="145" width="320" height="258"/>
+                                        <rect key="frame" x="0.0" y="155" width="320" height="258"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q1U-Bj-CFd" customClass="FMPTextField">
                                                 <rect key="frame" x="20" y="140" width="280" height="44"/>
@@ -109,7 +110,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="CRG-qz-ixZ" secondAttribute="bottom" id="SDK-bq-Q54"/>
-                            <constraint firstItem="CRG-qz-ixZ" firstAttribute="top" secondItem="aja-nw-h9W" secondAttribute="bottom" id="ZbE-J4-bc2"/>
+                            <constraint firstItem="CRG-qz-ixZ" firstAttribute="top" secondItem="bst-GX-bQ2" secondAttribute="topMargin" id="Zdp-ib-Lqf"/>
                             <constraint firstAttribute="trailing" secondItem="CRG-qz-ixZ" secondAttribute="trailing" id="y6A-uP-R9C"/>
                             <constraint firstItem="CRG-qz-ixZ" firstAttribute="leading" secondItem="bst-GX-bQ2" secondAttribute="leading" id="zNY-hD-HqI"/>
                         </constraints>
@@ -127,25 +128,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VMd-ot-d9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="802" y="327"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="UEZ-52-vTC">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Ka8-5o-FYk" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="eiO-1j-V8e">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="CUG-Dn-hov" kind="relationship" relationship="rootViewController" id="3u1-6F-0Ct"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BJb-C6-wxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="270" y="327"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

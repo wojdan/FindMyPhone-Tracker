@@ -34,15 +34,37 @@
 
     NSParameterAssert(viewController);
 
-    UIWindow *delegateWindow = [[UIApplication sharedApplication].delegate window];
+    UIWindow *window = [[UIApplication sharedApplication].delegate window];
 
-    [UIView transitionWithView:delegateWindow
-                      duration:0.5
-                       options:UIViewAnimationOptionTransitionFlipFromLeft
-                    animations:^{
-                        delegateWindow.rootViewController = viewController;
-                    }
-                    completion:nil];
+    window.rootViewController = viewController;
+
+    return;
+    
+    UIViewController *oldRootViewController = window.rootViewController;
+
+    [oldRootViewController addChildViewController:viewController];
+    [oldRootViewController.view addSubview:viewController.view];
+    [viewController didMoveToParentViewController:oldRootViewController];
+
+    viewController.view.alpha = 0.0;
+    [oldRootViewController.view bringSubviewToFront:viewController.view];
+
+    [UIView transitionWithView:window duration:0.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        viewController.view.alpha = 1.0;
+
+    } completion:^(BOOL finished) {
+        [viewController willMoveToParentViewController:nil];
+        [viewController.view removeFromSuperview];
+        [viewController removeFromParentViewController];
+        window.rootViewController = viewController;
+    }];
+}
+
++ (void)showLoginViewController{
+
+    UIViewController *loginViewController = [[UIStoryboard storyboardWithName:@"LoginViewController" bundle:nil] instantiateInitialViewController];
+    [AppDelegate setRootViewController:loginViewController];
+    
 }
 
 

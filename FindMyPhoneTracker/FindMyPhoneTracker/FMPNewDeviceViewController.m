@@ -1,33 +1,32 @@
 //
-//  FMPLoginViewController.m
+//  FMPNewDeviceViewController.m
 //  FindMyPhoneTracker
 //
-//  Created by Wojdan on 25.10.2014.
+//  Created by Wojdan on 31.10.2014.
 //  Copyright (c) 2014 wojdan. All rights reserved.
 //
 
-#import "AppDelegate.h"
-
-#import "FMPLoginViewController.h"
-#import "FMPHelpers.h"
-#import "FMPTestTrackerViewController.h"
+#import "SVProgressHUD.h"
 #import "FMPNewDeviceViewController.h"
 #import "FMPApiController.h"
+#import "AppDelegate.h"
+#import "FMPTestTrackerViewController.h"
+#import "FMPDefaultsController.h"
+#import "FMPHelpers.h"
 
-#import "SVProgressHUD.h"
-
-@interface FMPLoginViewController ()
+@interface FMPNewDeviceViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView* scrollableView;
 @property (weak, nonatomic) IBOutlet UIScrollView* scrollView;
-@property (weak, nonatomic) IBOutlet UITextField* loginTextField;
-@property (weak, nonatomic) IBOutlet UITextField* passwordTextField;
-@property (weak, nonatomic) IBOutlet UIButton* signInButton;
+@property (weak, nonatomic) IBOutlet UITextField* deviceNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField* deviceDescriptionTextField;
+@property (weak, nonatomic) IBOutlet UITextField* deviceIDTextField;
+@property (weak, nonatomic) IBOutlet UIButton* submitButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* bottomSpaceConstraint;
 
 @end
 
-@implementation FMPLoginViewController
+@implementation FMPNewDeviceViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,18 +42,20 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
-
-    self.loginTextField.text = @"halo@halo.com";
-    self.passwordTextField.text = @"halohalo";
+    self.deviceIDTextField.text = [UIDevice currentDevice].identifierForVendor.UUIDString;
+    self.deviceIDTextField.enabled = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)dealloc {
+
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 }
 
 - (void)dismissKeyboard:(id)sender {
@@ -99,32 +100,20 @@
     [UIView animateWithDuration:duration delay:0 options:options animations:^{
         [self.view layoutIfNeeded];
     } completion:nil];
-    
+
 }
 
 #pragma mark - Handful methods
 
-- (BOOL)loginFormValid {
+- (BOOL)formIsValid {
 
     NSString *errorMessage;
-    if (self.loginTextField.text.length == 0) {
-        [FMPHelpers shakeView:self.loginTextField showingBorder:YES];
-        errorMessage = @"Login or password is missing.";
-    }
-
-    if (self.passwordTextField.text.length == 0) {
-        [FMPHelpers shakeView:self.passwordTextField showingBorder:YES];
-        errorMessage = @"Login or password is missing.";
+    if (self.deviceNameTextField.text.length == 0) {
+        errorMessage = @"Device name is missing.";
     }
 
     if (errorMessage) {
-        [SVProgressHUD showErrorWithStatus:errorMessage];
-        return NO;
-    }
-
-    if (![FMPHelpers validateEmail:self.loginTextField.text]) {
-        errorMessage = @"Incorrect email address.";
-        [FMPHelpers shakeView:self.loginTextField showingBorder:YES];
+        [FMPHelpers shakeView:self.deviceNameTextField showingBorder:YES];
         [SVProgressHUD showErrorWithStatus:errorMessage];
         return NO;
     }
@@ -136,13 +125,15 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
 
+    [self.scrollView setContentOffset:CGPointZero animated:YES];
+
     return true;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 
-    if ([textField isEqual:self.loginTextField]) {
-        [self.passwordTextField becomeFirstResponder];
+    if ([textField isEqual:self.deviceNameTextField]) {
+        [self.deviceDescriptionTextField becomeFirstResponder];
     }
     else {
         [textField resignFirstResponder];
@@ -159,36 +150,27 @@
 
 #pragma mark - IBActions
 
-- (IBAction)signInButtonClicked:(id)sender {
+- (IBAction)submitButtonClicked:(id)sender {
 
-    if (![self loginFormValid]) {
+    if (![self formIsValid]) {
         return;
     }
 
-    [FMPApiController loginWithEmailAddress:self.loginTextField.text password:self.passwordTextField.text completionHandler:^(BOOL success, NSError *error) {
-
+    [FMPApiController addDeviceWithName:self.deviceNameTextField.text password:self.deviceDescriptionTextField.text vendorID:self.deviceIDTextField.text completionHandler:^(BOOL success, NSError *error) {
         if (success) {
-            [FMPApiController checkIfDeviceIsAlreadyRegistered:^(BOOL registered, NSError *error) {
-                if (!error) {
-                    if (registered) {
-                        FMPTestTrackerViewController *newDeviceView = [[UIStoryboard storyboardWithName:@"TestTrackerViewController" bundle:nil] instantiateInitialViewController];
-                        [AppDelegate setRootViewController:newDeviceView];
-                    } else {
-                        FMPNewDeviceViewController *newDeviceView = [[UIStoryboard storyboardWithName:@"NewDeviceViewController" bundle:nil] instantiateInitialViewController];
-                        [AppDelegate setRootViewController:newDeviceView];
 
-                    }
-                } else {
-                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                }
-            }];
-
-            [self.view endEditing:YES];
+            FMPTestTrackerViewController *newDeviceView = [[UIStoryboard storyboardWithName:@"TestTrackerViewController" bundle:nil] instantiateInitialViewController];
+            [AppDelegate setRootViewController:newDeviceView];
+            NSLog(@"Dodano urządzenie");
         }
+        
     }];
-
-    NSLog(@"Zalogowono");
 
 }
 
+- (IBAction)logoutButtonClicked:(id)sender {
+
+    [FMPApiController logout];
+
+}
 @end

@@ -40,7 +40,7 @@
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeF-HH-UXk" customClass="FMPButton">
                                                 <rect key="frame" x="95" y="259" width="130" height="44"/>
-                                                <color key="backgroundColor" red="0.3378193431" green="0.65567974449999999" blue="0.24509580289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.11764705882352941" green="0.47058823529411764" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="EUo-02-fIf"/>
                                                     <constraint firstAttribute="width" constant="130" id="hvG-Wi-0AY"/>

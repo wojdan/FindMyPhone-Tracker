@@ -49,7 +49,6 @@
 }
 
 - (void)dealloc {
-    self.timer = nil;
     [self.locationManager stopUpdatingLocation];
     self.locationManager = nil;
 }
@@ -81,11 +80,6 @@
 
     self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", lastLocation.coordinate.latitude];
     self.longitudeLabel.text = [NSString stringWithFormat:@"%.8f", lastLocation.coordinate.longitude];
-
-    [self.locationManager stopUpdatingLocation];
-
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self.locationManager selector:@selector(startUpdatingLocation)  userInfo:nil repeats:NO];
-
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFinishDeferredUpdatesWithError:(NSError *)error {
@@ -112,6 +106,9 @@
 - (IBAction)sendButtonClicked:(id)sender {
 
     [FMPApiController postUserLocation:self.mostRecentLocation completionHandler:^(BOOL success, NSError *error) {
+
+        if (error) {
+        }
 
     }];
 

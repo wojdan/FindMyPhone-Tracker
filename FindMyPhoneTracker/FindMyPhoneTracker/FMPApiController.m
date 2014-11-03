@@ -60,9 +60,8 @@
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
-        [self handleError:error];
         handler(NO, error);
-
+        [self handleError:error];
     }];
 
 }

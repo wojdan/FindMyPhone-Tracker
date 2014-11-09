@@ -19,7 +19,7 @@
 + (instancetype)sharedInstance;
 
 + (void)postUserLocation:(CLLocation*)location completionHandler:(void (^)(BOOL success, NSError *error))handler;
-+ (void)loginWithEmailAddress:(NSString *)emailAddress password:(NSString *)password completionHandler:(void (^)(BOOL, NSError *))handler;
++ (void)loginWithEmailAddress:(NSString *)emailAddress password:(NSString *)password completionHandler:(void (^)(BOOL, BOOL, NSError *))handler;
 + (void)addDeviceWithName:(NSString *)name password:(NSString *)description vendorID:(NSString*)vendorID completionHandler:(void (^)(BOOL, NSError *))handler;
 + (void)deregisterCurrentDevice:(void (^)(BOOL, NSError *))handler;
 + (void)getDevicesWithCompletionHandler:(void (^)(BOOL, NSArray*, NSError *))handler;

@@ -159,8 +159,8 @@
     [FMPApiController addDeviceWithName:self.deviceNameTextField.text password:self.deviceDescriptionTextField.text vendorID:self.deviceIDTextField.text completionHandler:^(BOOL success, NSError *error) {
         if (success) {
 
-            FMPTestTrackerViewController *newDeviceView = [[UIStoryboard storyboardWithName:@"TestTrackerViewController" bundle:nil] instantiateInitialViewController];
-            [AppDelegate setRootViewController:newDeviceView];
+            FMPTestTrackerViewController *testTrackerVC = [[UIStoryboard storyboardWithName:@"TestTrackerViewController" bundle:nil] instantiateInitialViewController];
+            [AppDelegate setRootViewController:testTrackerVC];
             NSLog(@"Dodano urządzenie");
         }
         

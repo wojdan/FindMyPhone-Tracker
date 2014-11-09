@@ -61,20 +61,22 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
         handler(NO, error);
-        [self handleError:error];
+        [self handleError:error operationError:operation.responseObject];
     }];
 
 }
 
-+ (void)loginWithEmailAddress:(NSString *)emailAddress password:(NSString *)password completionHandler:(void (^)(BOOL, NSError *))handler {
++ (void)loginWithEmailAddress:(NSString *)emailAddress password:(NSString *)password completionHandler:(void (^)(BOOL, BOOL, NSError *))handler {
 
+    NSString *deviceID = [[UIDevice currentDevice] identifierForVendor].UUIDString;
     NSMutableDictionary *parameters = [@{
                                          @"email" : emailAddress,
-                                         @"password"  : password
+                                         @"password"  : password,
+                                         @"device_id" : deviceID
                                          } mutableCopy];
 
     [SVProgressHUD show];
-    [[FMPApiController sharedInstance] POST:@"users/login" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[FMPApiController sharedInstance] POST:@"users/login-tracker" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
         NSString *token = [operation.response allHeaderFields][@"Authorization"];
         if (token) {
@@ -83,16 +85,16 @@
             [[FMPApiController sharedInstance].requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
 
             NSLog(@"Login successfull");
-            handler(YES, nil);
+            handler(YES, [responseObject[@"registered"] boolValue], nil);
         } else {
-            handler(NO, nil);
+            handler(NO, NO, nil);
         }
 
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
-        [self handleError:error];
-        handler(NO, error);
+        [self handleError:error operationError:operation.responseObject];
+        handler(NO, NO, error);
     }];
 }
 
@@ -112,7 +114,7 @@
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
-        [self handleError:error];
+        [self handleError:error operationError:operation.responseObject];
         handler(NO, error);
     }];
 }
@@ -136,7 +138,7 @@
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
-        [self handleError:error];
+        [self handleError:error operationError:operation.responseObject];
         handler(NO, error);
 
     }];
@@ -158,7 +160,7 @@
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
-        [self handleError:error];
+        [self handleError:error operationError:operation.responseObject];
         handler(NO, nil, error);
     }];
     
@@ -183,7 +185,7 @@
         }
         handler(isRegistered, error);
         if (error) {
-            [self handleError:error];
+            [self handleError:error operationError:nil];
         }
 
     }];
@@ -198,7 +200,18 @@
     [AppDelegate showLoginViewController];
 }
 
-+ (void)handleError:(NSError*)error {
++ (void)handleError:(NSError*)error operationError:(NSString*)operationError {
+
+    if (operationError) {
+        if ([operationError isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dic = ((NSDictionary*)operationError)[@"errors"];
+            if ([[dic allKeys] firstObject]) {
+                NSString *errorMessage = dic[[dic allKeys][0]];
+                [SVProgressHUD showErrorWithStatus:errorMessage];
+                return;
+            }
+        }
+    }
 
     if (error.code == 403) {
         [self logout];

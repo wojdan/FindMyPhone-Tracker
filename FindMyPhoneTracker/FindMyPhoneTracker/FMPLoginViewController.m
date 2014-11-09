@@ -13,7 +13,7 @@
 #import "FMPTestTrackerViewController.h"
 #import "FMPNewDeviceViewController.h"
 #import "FMPApiController.h"
-
+#import "FMPAfterLoginViewController.h"
 #import "SVProgressHUD.h"
 
 @interface FMPLoginViewController ()
@@ -165,24 +165,17 @@
         return;
     }
 
-    [FMPApiController loginWithEmailAddress:self.loginTextField.text password:self.passwordTextField.text completionHandler:^(BOOL success, NSError *error) {
+    [FMPApiController loginWithEmailAddress:self.loginTextField.text password:self.passwordTextField.text completionHandler:^(BOOL success, BOOL registered, NSError *error) {
 
         if (success) {
-            [FMPApiController checkIfDeviceIsAlreadyRegistered:^(BOOL registered, NSError *error) {
-                if (!error) {
-                    if (registered) {
-                        FMPTestTrackerViewController *newDeviceView = [[UIStoryboard storyboardWithName:@"TestTrackerViewController" bundle:nil] instantiateInitialViewController];
-                        [AppDelegate setRootViewController:newDeviceView];
-                    } else {
-                        FMPNewDeviceViewController *newDeviceView = [[UIStoryboard storyboardWithName:@"NewDeviceViewController" bundle:nil] instantiateInitialViewController];
-                        [AppDelegate setRootViewController:newDeviceView];
+            if (registered) {
+                FMPTestTrackerViewController *newDeviceView = [[UIStoryboard storyboardWithName:@"TestTrackerViewController" bundle:nil] instantiateInitialViewController];
+                [AppDelegate setRootViewController:newDeviceView];
+            } else {
+                FMPAfterLoginViewController *afterLoginVC = [[UIStoryboard storyboardWithName:@"AfterLoginViewController" bundle:nil] instantiateInitialViewController];
+                [AppDelegate setRootViewController:afterLoginVC];
 
-                    }
-                } else {
-                    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-                }
-            }];
-
+            }
             [self.view endEditing:YES];
         }
     }];

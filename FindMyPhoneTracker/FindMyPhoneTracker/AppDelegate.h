@@ -14,6 +14,8 @@
 
 + (void)setRootViewController:(UIViewController*)viewController;
 + (void)showLoginViewController;
++ (void)showAfterLoginViewController;
++ (void)showTrackerViewController;
 
 @end
 

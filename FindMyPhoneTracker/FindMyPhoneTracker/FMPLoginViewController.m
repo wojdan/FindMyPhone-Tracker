@@ -169,12 +169,9 @@
 
         if (success) {
             if (registered) {
-                FMPTestTrackerViewController *newDeviceView = [[UIStoryboard storyboardWithName:@"TestTrackerViewController" bundle:nil] instantiateInitialViewController];
-                [AppDelegate setRootViewController:newDeviceView];
+                [AppDelegate showTrackerViewController];
             } else {
-                FMPAfterLoginViewController *afterLoginVC = [[UIStoryboard storyboardWithName:@"AfterLoginViewController" bundle:nil] instantiateInitialViewController];
-                [AppDelegate setRootViewController:afterLoginVC];
-
+                [AppDelegate showAfterLoginViewController];
             }
             [self.view endEditing:YES];
         }

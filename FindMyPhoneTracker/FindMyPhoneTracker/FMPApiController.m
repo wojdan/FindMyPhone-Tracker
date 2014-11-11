@@ -37,23 +37,16 @@
 
     NSMutableDictionary *parameters = [@{
                                          @"lat" : @(location.coordinate.latitude),
-                                         @"lng"  : @(location.coordinate.longitude)
+                                         @"lng"  : @(location.coordinate.longitude),
+                                         @"device_id" : [UIDevice currentDevice].identifierForVendor.UUIDString,
+                                         @"mode" : @"normal"
                                          } mutableCopy];
 
-    NSString *path;
-    NSNumber *dID = [FMPApiController sharedInstance].deviceID;
-    if (dID) {
-        path = [NSString stringWithFormat:@"devices/%d/locations", dID.integerValue];
-    } else {
-        [SVProgressHUD showErrorWithStatus:@"Device unregistered. Sign in again."];
-        [self logout];
-        return;
-    }
 
     [SVProgressHUD show];
-    [[FMPApiController sharedInstance] POST:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[FMPApiController sharedInstance] POST:@"devices/locations" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
-        [SVProgressHUD showSuccessWithStatus:responseObject[@"message"]];
+        [SVProgressHUD showSuccessWithStatus:responseObject[@"message"] ? :@"Success"];
 
         NSLog(@"Request successul :) \nResponse object:\n%@", responseObject);
         handler(YES, nil);
@@ -85,6 +78,7 @@
             [[FMPApiController sharedInstance].requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
 
             NSLog(@"Login successfull");
+
             handler(YES, [responseObject[@"registered"] boolValue], nil);
         } else {
             handler(NO, NO, nil);

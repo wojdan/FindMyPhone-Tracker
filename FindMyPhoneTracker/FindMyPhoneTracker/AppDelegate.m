@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "SVProgressHUD.h"
 
+#import "FMPAfterLoginViewController.h"
+#import "FMPTestTrackerViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -65,6 +68,20 @@
     UIViewController *loginViewController = [[UIStoryboard storyboardWithName:@"LoginViewController" bundle:nil] instantiateInitialViewController];
     [AppDelegate setRootViewController:loginViewController];
     
+}
+
++ (void)showTrackerViewController{
+
+    FMPTestTrackerViewController *newDeviceView = [[UIStoryboard storyboardWithName:@"TestTrackerViewController" bundle:nil] instantiateInitialViewController];
+    [AppDelegate setRootViewController:newDeviceView];
+
+}
+
++ (void)showAfterLoginViewController{
+
+    FMPAfterLoginViewController *afterLoginVC = [[UIStoryboard storyboardWithName:@"AfterLoginViewController" bundle:nil] instantiateInitialViewController];
+    [AppDelegate setRootViewController:afterLoginVC];
+
 }
 
 

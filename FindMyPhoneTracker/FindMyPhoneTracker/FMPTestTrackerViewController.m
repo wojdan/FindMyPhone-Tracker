@@ -8,6 +8,7 @@
 
 #import "FMPTestTrackerViewController.h"
 #import "FMPApiController.h"
+#import "AppDelegate.h"
 
 #import <MapKit/MapKit.h>
 
@@ -57,6 +58,7 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
 
+    [self.locationManager stopUpdatingLocation];
     NSLog(@"Location updated");
 
     CLLocation *lastLocation = [locations lastObject];
@@ -80,6 +82,7 @@
 
     self.latitudeLabel.text = [NSString stringWithFormat:@"%.8f", lastLocation.coordinate.latitude];
     self.longitudeLabel.text = [NSString stringWithFormat:@"%.8f", lastLocation.coordinate.longitude];
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFinishDeferredUpdatesWithError:(NSError *)error {
@@ -115,7 +118,7 @@
 }
 - (IBAction)deregisterButtonClicked:(id)sender {
 
-    [FMPApiController logout];
+    [AppDelegate deactivateLocation];
 
 }
 

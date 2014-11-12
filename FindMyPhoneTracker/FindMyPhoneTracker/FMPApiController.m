@@ -23,6 +23,8 @@
         NSURL *baseURL = [NSURL URLWithString:API_BASE_URL];
 
         __sharedInstance = [[FMPApiController alloc] initWithBaseURL:baseURL];
+        __sharedInstance.updatePeriod = @(10);
+        __sharedInstance.workingMode = FMPTrackerModeOff;
         __sharedInstance.responseSerializer = [AFJSONResponseSerializer serializer];
         __sharedInstance.requestSerializer = [AFJSONRequestSerializer serializer];
 
@@ -39,9 +41,10 @@
                                          @"lat" : @(location.coordinate.latitude),
                                          @"lng"  : @(location.coordinate.longitude),
                                          @"device_id" : [UIDevice currentDevice].identifierForVendor.UUIDString,
-                                         @"mode" : @"normal"
+                                         @"mode" : [FMPApiController sharedInstance].workingMode == FMPTrackerModeManual ? @"normal" : @"anti_thief"
                                          } mutableCopy];
 
+    NSLog(@"Attempt to send %@-mode request!", parameters[@"mode"]);
 
     [SVProgressHUD show];
     [[FMPApiController sharedInstance] POST:@"devices/locations" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -187,10 +190,12 @@
 
 + (void)logout {
 
+    [FMPApiController sharedInstance].workingMode = FMPTrackerModeOff;
     [FMPApiController sharedInstance].accessToken = nil;
     [FMPApiController sharedInstance].deviceID = nil;
 
     [FMPDefaultsController clearDefaults];
+    [AppDelegate deactivateLocation];
     [AppDelegate showLoginViewController];
 }
 

@@ -11,10 +11,18 @@
 
 #define API_BASE_URL @"http://find-my-phone-api.herokuapp.com/api/v1/"
 
+typedef enum : NSUInteger {
+    FMPTrackerModeOff = 0,
+    FMPTrackerModeManual,
+    FMPTrackerModeAntiThief
+} FMPTrackerMode;
+
 @interface FMPApiController : AFHTTPRequestOperationManager
 
 @property (strong, nonatomic) NSString *accessToken;
 @property (strong, nonatomic) NSNumber *deviceID;
+@property (nonatomic) FMPTrackerMode workingMode;
+@property (strong, nonatomic) NSNumber *updatePeriod;
 
 + (instancetype)sharedInstance;
 

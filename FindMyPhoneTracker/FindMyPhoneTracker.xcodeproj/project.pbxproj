@@ -28,6 +28,11 @@
 		84BF719F1A0664850032D235 /* NewDeviceViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84BF719C1A0664840032D235 /* NewDeviceViewController.storyboard */; };
 		84E789441A10204500786031 /* FMPAfterLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E789431A10204500786031 /* FMPAfterLoginViewController.m */; };
 		84E789461A10206100786031 /* AfterLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E789451A10206100786031 /* AfterLoginViewController.storyboard */; };
+		84E789F21A12B8A100786031 /* BackgroundTaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E789ED1A12B8A100786031 /* BackgroundTaskManager.m */; };
+		84E789F31A12B8A100786031 /* LocationShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E789EF1A12B8A100786031 /* LocationShareModel.m */; };
+		84E789F41A12B8A100786031 /* LocationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E789F11A12B8A100786031 /* LocationTracker.m */; };
+		84E789F71A12CFA500786031 /* TrackerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E789F61A12CFA500786031 /* TrackerViewController.storyboard */; };
+		84E789FA1A12DB6D00786031 /* FMPTrackerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E789F91A12DB6D00786031 /* FMPTrackerViewController.m */; };
 		EBC9293E365D424BB6B8B3E1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C340EB15374A5DBBDD9A2E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +84,15 @@
 		84E789421A10204500786031 /* FMPAfterLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMPAfterLoginViewController.h; sourceTree = "<group>"; };
 		84E789431A10204500786031 /* FMPAfterLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMPAfterLoginViewController.m; sourceTree = "<group>"; };
 		84E789451A10206100786031 /* AfterLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AfterLoginViewController.storyboard; sourceTree = "<group>"; };
+		84E789EC1A12B8A100786031 /* BackgroundTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundTaskManager.h; sourceTree = "<group>"; };
+		84E789ED1A12B8A100786031 /* BackgroundTaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTaskManager.m; sourceTree = "<group>"; };
+		84E789EE1A12B8A100786031 /* LocationShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationShareModel.h; sourceTree = "<group>"; };
+		84E789EF1A12B8A100786031 /* LocationShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationShareModel.m; sourceTree = "<group>"; };
+		84E789F01A12B8A100786031 /* LocationTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTracker.h; sourceTree = "<group>"; };
+		84E789F11A12B8A100786031 /* LocationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTracker.m; sourceTree = "<group>"; };
+		84E789F61A12CFA500786031 /* TrackerViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TrackerViewController.storyboard; sourceTree = "<group>"; };
+		84E789F81A12DB6D00786031 /* FMPTrackerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMPTrackerViewController.h; sourceTree = "<group>"; };
+		84E789F91A12DB6D00786031 /* FMPTrackerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMPTrackerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +153,7 @@
 				849061A019FD50CF005509A6 /* AppDelegate.m */,
 				849061A819FD50CF005509A6 /* Images.xcassets */,
 				849061AA19FD50CF005509A6 /* LaunchScreen.xib */,
+				84E7894E1A12B78A00786031 /* Location and Background Managing */,
 				849061D419FD525D005509A6 /* API and Model */,
 				849061D519FD526C005509A6 /* Subclasses */,
 				849061D719FD5281005509A6 /* ViewControllers */,
@@ -209,6 +224,7 @@
 		849061D719FD5281005509A6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84E789F51A12CF4C00786031 /* Tracker  */,
 				84E789411A10202200786031 /* After Login */,
 				84BF71A01A0664940032D235 /* New Device */,
 				849061E419FD605E005509A6 /* TestTracker */,
@@ -265,6 +281,29 @@
 			name = "After Login";
 			sourceTree = "<group>";
 		};
+		84E7894E1A12B78A00786031 /* Location and Background Managing */ = {
+			isa = PBXGroup;
+			children = (
+				84E789EC1A12B8A100786031 /* BackgroundTaskManager.h */,
+				84E789ED1A12B8A100786031 /* BackgroundTaskManager.m */,
+				84E789EE1A12B8A100786031 /* LocationShareModel.h */,
+				84E789EF1A12B8A100786031 /* LocationShareModel.m */,
+				84E789F01A12B8A100786031 /* LocationTracker.h */,
+				84E789F11A12B8A100786031 /* LocationTracker.m */,
+			);
+			name = "Location and Background Managing";
+			sourceTree = "<group>";
+		};
+		84E789F51A12CF4C00786031 /* Tracker  */ = {
+			isa = PBXGroup;
+			children = (
+				84E789F81A12DB6D00786031 /* FMPTrackerViewController.h */,
+				84E789F91A12DB6D00786031 /* FMPTrackerViewController.m */,
+				84E789F61A12CFA500786031 /* TrackerViewController.storyboard */,
+			);
+			name = "Tracker ";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -316,6 +355,11 @@
 				TargetAttributes = {
 					8490619719FD50CF005509A6 = {
 						CreatedOnToolsVersion = 6.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					849061B019FD50CF005509A6 = {
 						CreatedOnToolsVersion = 6.1;
@@ -351,6 +395,7 @@
 				849061DE19FD53B6005509A6 /* iconTracker@2x.png in Resources */,
 				849061AC19FD50CF005509A6 /* LaunchScreen.xib in Resources */,
 				84E789461A10206100786031 /* AfterLoginViewController.storyboard in Resources */,
+				84E789F71A12CFA500786031 /* TrackerViewController.storyboard in Resources */,
 				849061D319FD5257005509A6 /* LoginViewController.storyboard in Resources */,
 				84BF719F1A0664850032D235 /* NewDeviceViewController.storyboard in Resources */,
 				849061A919FD50CF005509A6 /* Images.xcassets in Resources */,
@@ -404,17 +449,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E789FA1A12DB6D00786031 /* FMPTrackerViewController.m in Sources */,
 				849061CD19FD5257005509A6 /* FMPApiController.m in Sources */,
 				849061D119FD5257005509A6 /* FMPTextField.m in Sources */,
 				84BF719D1A0664850032D235 /* FMPDefaultsController.m in Sources */,
 				84E789441A10204500786031 /* FMPAfterLoginViewController.m in Sources */,
+				84E789F21A12B8A100786031 /* BackgroundTaskManager.m in Sources */,
 				849061CE19FD5257005509A6 /* FMPButton.m in Sources */,
+				84E789F31A12B8A100786031 /* LocationShareModel.m in Sources */,
 				849061D019FD5257005509A6 /* FMPLoginViewController.m in Sources */,
 				84BF719E1A0664850032D235 /* FMPNewDeviceViewController.m in Sources */,
 				849061CF19FD5257005509A6 /* FMPHelpers.m in Sources */,
 				849061A119FD50CF005509A6 /* AppDelegate.m in Sources */,
 				8490619E19FD50CF005509A6 /* main.m in Sources */,
 				849061E719FD6098005509A6 /* FMPTestTrackerViewController.m in Sources */,
+				84E789F41A12B8A100786031 /* LocationTracker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

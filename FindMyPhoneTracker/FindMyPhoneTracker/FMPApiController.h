@@ -100,6 +100,7 @@ typedef enum : NSUInteger {
 /**
  *  Metoda wykonująca request typu DELETE w celu wyrejestrowania urządzenia z konta użytkownika.
  *
+ *  @param handler Handler przekazuje następujące parametry:
  *  <ol>
  *      <li>typu boolean sprawdzajacy czy request się powiódł</li>
  *      <li>error jeżeli wystąpił</li>
@@ -111,6 +112,7 @@ typedef enum : NSUInteger {
 /**
  *  Metoda wykonująca request typu GET w celu pobrania listy urządzeń.
  *
+ *  @param handler Handler przekazuje następujące parametry:
  *  <ol>
  *      <li>typu boolean sprawdzajacy czy request się powiódł</li>
  *      <li>typu NSArray - tablica zarejestrowanych na koncie urządzeń</li>
@@ -123,6 +125,7 @@ typedef enum : NSUInteger {
 /**
  *  Metoda wykonująca request typu GET w celu pobrania ustawień Anti-Thief dla urządzenia.
  *
+ *  @param handler Handler przekazuje następujące parametry:
  *  <ol>
  *      <li>typu boolean sprawdzajacy czy request się powiódł</li>
  *      <li>error jeżeli wystąpił</li>

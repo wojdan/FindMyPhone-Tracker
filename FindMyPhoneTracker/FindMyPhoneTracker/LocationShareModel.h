@@ -14,6 +14,7 @@
 
 @property (nonatomic) NSTimer *timer;
 @property (nonatomic) NSTimer * delay10Seconds;
+@property (nonatomic) NSTimer *updateSettingsTimer;
 @property (nonatomic) BackgroundTaskManager * bgTask;
 @property (nonatomic) NSMutableArray *myLocationArray;
 

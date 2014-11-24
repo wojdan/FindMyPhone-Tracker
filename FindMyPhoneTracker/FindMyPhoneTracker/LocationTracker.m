@@ -40,6 +40,10 @@
 	return self;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 -(void)applicationEnterBackground{
     CLLocationManager *locationManager = [LocationTracker sharedLocationManager];
@@ -96,6 +100,12 @@
             locationManager.delegate = self;
             locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
             locationManager.distanceFilter = kCLDistanceFilterNone;
+
+
+            self.shareModel.updateSettingsTimer = [NSTimer scheduledTimerWithTimeInterval:30 target:self
+                                                                   selector:@selector(updateSettings)
+                                                                   userInfo:nil
+                                                                    repeats:YES];
             
             if(IS_OS_8_OR_LATER) {
               [locationManager requestAlwaysAuthorization];
@@ -113,7 +123,12 @@
         [self.shareModel.timer invalidate];
         self.shareModel.timer = nil;
     }
-    
+
+    if (self.shareModel.updateSettingsTimer) {
+        [self.shareModel.updateSettingsTimer invalidate];
+        self.shareModel.updateSettingsTimer = nil;
+    }
+
 	CLLocationManager *locationManager = [LocationTracker sharedLocationManager];
 	[locationManager stopUpdatingLocation];
 }
@@ -138,7 +153,7 @@
         
         //Select only valid location and also location with good accuracy
         if(newLocation!=nil&&theAccuracy>0
-           &&theAccuracy<2000
+           &&theAccuracy<20000
            &&(!(theLocation.latitude==0.0&&theLocation.longitude==0.0))){
             
             self.myLastLocation = theLocation;
@@ -258,21 +273,22 @@
     }
     
     NSLog(@"Send to Server: Latitude(%f) Longitude(%f) Accuracy(%f)",self.myLocation.latitude, self.myLocation.longitude,self.myLocationAccuracy);
-    
-    //TODO: Your code to send the self.myLocation and self.myLocationAccuracy to your server
-    CLLocation *loc = [[CLLocation alloc] initWithLatitude:self.myLastLocation.latitude longitude:self.myLocation.longitude];
-    [FMPApiController postUserLocation:loc completionHandler:^(BOOL success, NSError *error) {
 
-        if (success) {
-            NSLog(@"Successfully posted location!!!!");
-        }
+    if(self.myLocationAccuracy != 0) {
+        CLLocation *loc = [[CLLocation alloc] initWithLatitude:self.myLastLocation.latitude longitude:self.myLocation.longitude];
+        [FMPApiController postUserLocation:loc completionHandler:^(BOOL success, NSError *error) {
 
-        if (error) {
-            NSLog(error.localizedDescription);
-        }
+            if (success) {
+                NSLog(@"Successfully posted location!!!!");
+            }
 
-
-    }];
+            if (error) {
+                NSLog(error.localizedDescription);
+            }
+            
+            
+        }];
+    }
 
     //After sending the location to the server successful, remember to clear the current array with the following code. It is to make sure that you clear up old location in the array and add the new locations from locationManager
     [self.shareModel.myLocationArray removeAllObjects];
@@ -330,6 +346,14 @@
     self.shareModel.myLocationArray = [[NSMutableArray alloc]init];
 }
 
+- (void)updateSettings {
 
+    [FMPApiController getDeviceSettingsWithCompletionHandler:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"Settings got updated!");
+        }
+    }];
+
+}
 
 @end

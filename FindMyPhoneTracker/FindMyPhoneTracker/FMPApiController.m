@@ -74,11 +74,14 @@
     [SVProgressHUD show];
     [[FMPApiController sharedInstance] POST:@"users/login-tracker" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
+        [SVProgressHUD dismiss];
         NSString *token = [operation.response allHeaderFields][@"Authorization"];
         if (token) {
             [FMPDefaultsController saveToken:token];
             [FMPApiController sharedInstance].accessToken = token;
             [[FMPApiController sharedInstance].requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
+
+            [FMPApiController sharedInstance].deviceID = responseObject[@"deviceId"];
 
             NSLog(@"Login successfull");
 
@@ -90,6 +93,7 @@
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
+        [SVProgressHUD dismiss];
         [self handleError:error operationError:operation.responseObject];
         handler(NO, NO, error);
     }];
@@ -163,6 +167,31 @@
     
 }
 
+
++ (void)getDeviceSettingsWithCompletionHandler:(void (^)(BOOL, NSError *))handler {
+
+    NSString *path = [NSString stringWithFormat:@"devices/%d/settings", [FMPApiController sharedInstance].deviceID.integerValue];
+    [SVProgressHUD showWithStatus:@"Getting Anti-Thief settings"];
+    [[FMPApiController sharedInstance] GET:path parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSDictionary *settings = @{};
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([((NSDictionary*)responseObject) objectForKey:@"settings"]) {
+                settings = [((NSDictionary*)responseObject) objectForKey:@"settings"];
+                [FMPApiController sharedInstance].updatePeriod = settings[@"period"];
+            }
+        }
+
+        handler(YES, nil);
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+        [self handleError:error operationError:operation.responseObject];
+        handler(NO, error);
+    }];
+    
+}
+
 + (void)checkIfDeviceIsAlreadyRegistered:(void (^)(BOOL registered, NSError *error))handler {
 
     [self getDevicesWithCompletionHandler:^(BOOL success, NSArray *devices, NSError *error) {
@@ -193,6 +222,7 @@
     [FMPApiController sharedInstance].workingMode = FMPTrackerModeOff;
     [FMPApiController sharedInstance].accessToken = nil;
     [FMPApiController sharedInstance].deviceID = nil;
+    [FMPApiController sharedInstance].updatePeriod = nil;
 
     [FMPDefaultsController clearDefaults];
     [AppDelegate deactivateLocation];

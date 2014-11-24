@@ -144,14 +144,6 @@
                                            selector:@selector(updateLocation)
                                            userInfo:nil
                                             repeats:YES];
-        } else if (mode == FMPTrackerModeManual) {
-            NSTimeInterval time = [FMPApiController sharedInstance].updatePeriod.integerValue;
-            sharedDelegate.locationUpdateTimer =
-            [NSTimer scheduledTimerWithTimeInterval:time
-                                             target:self
-                                           selector:@selector(postNotificationWithLocation)
-                                           userInfo:nil
-                                            repeats:YES];
         } else if (sharedDelegate.locationUpdateTimer) {
             [sharedDelegate.locationUpdateTimer invalidate];
             sharedDelegate.locationUpdateTimer = nil;

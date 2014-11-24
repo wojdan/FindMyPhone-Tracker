@@ -44,8 +44,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
 
-    self.loginTextField.text = @"halo@halo.com";
-    self.passwordTextField.text = @"halohalo";
+    self.loginTextField.text = @"wojdanek@gmail.com";
+    self.passwordTextField.text = @"qwerty123";
 }
 
 - (void)viewDidDisappear:(BOOL)animated{

@@ -31,6 +31,7 @@ typedef enum : NSUInteger {
 + (void)addDeviceWithName:(NSString *)name password:(NSString *)description vendorID:(NSString*)vendorID completionHandler:(void (^)(BOOL, NSError *))handler;
 + (void)deregisterCurrentDevice:(void (^)(BOOL, NSError *))handler;
 + (void)getDevicesWithCompletionHandler:(void (^)(BOOL, NSArray*, NSError *))handler;
++ (void)getDeviceSettingsWithCompletionHandler:(void (^)(BOOL, NSError *))handler;
 + (void)checkIfDeviceIsAlreadyRegistered:(void (^)(BOOL success, NSError *error))handler;
 + (void)logout;
 

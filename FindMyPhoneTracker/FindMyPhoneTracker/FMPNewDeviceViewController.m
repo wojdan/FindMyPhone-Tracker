@@ -10,7 +10,7 @@
 #import "FMPNewDeviceViewController.h"
 #import "FMPApiController.h"
 #import "AppDelegate.h"
-#import "FMPTestTrackerViewController.h"
+#import "FMPTrackerViewController.h"
 #import "FMPDefaultsController.h"
 #import "FMPHelpers.h"
 
@@ -159,7 +159,7 @@
     [FMPApiController addDeviceWithName:self.deviceNameTextField.text password:self.deviceDescriptionTextField.text vendorID:self.deviceIDTextField.text completionHandler:^(BOOL success, NSError *error) {
         if (success) {
 
-            FMPTestTrackerViewController *testTrackerVC = [[UIStoryboard storyboardWithName:@"TestTrackerViewController" bundle:nil] instantiateInitialViewController];
+            FMPTrackerViewController *testTrackerVC = [[UIStoryboard storyboardWithName:@"TrackerViewController" bundle:nil] instantiateInitialViewController];
             [AppDelegate setRootViewController:testTrackerVC];
             NSLog(@"Dodano urządzenie");
         }

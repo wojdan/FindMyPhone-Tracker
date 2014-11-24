@@ -73,7 +73,6 @@
 
 -(void)drainBGTaskList:(BOOL)all
 {
-    //mark end of each of our background task
     UIApplication* application = [UIApplication sharedApplication];
     if([application respondsToSelector:@selector(endBackgroundTask:)]){
         NSUInteger count=self.bgTaskIdList.count;

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  Kontroler odpowiedzialny za rejestrację urządzenia.
+ */
 @interface FMPNewDeviceViewController : UIViewController
 
 @end

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  Kontroler wyświetlany po pierwszym logowaniu. Daje możliwość zarejestrowania urządzenia lub wylogowania użytkownika.
+ */
 @interface FMPAfterLoginViewController : UIViewController
 
 @end

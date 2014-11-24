@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
+/**
+ *  Customowy UITextField
+ */
 @interface FMPTextField : UITextField
 
 @end

@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+/**
+ *  Kontroler odpowiedzialny za uruchamianie trackowania w odpowiednim trybie.
+ */
 @interface FMPTrackerViewController : UIViewController <MKMapViewDelegate>
 
 @end

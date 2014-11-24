@@ -37,7 +37,6 @@
 
 - (id)init {
 	if (self==[super init]) {
-        //Get the share model and also initialize myLocationArray
         self.shareModel = [LocationShareModel sharedModel];
         self.shareModel.myLocationArray = [[NSMutableArray alloc]init];
         
@@ -63,8 +62,7 @@
         [locationManager requestAlwaysAuthorization];
     }
     [locationManager startUpdatingLocation];
-    
-    //Use the BackgroundTaskManager to manage all the background Task
+
     self.shareModel.bgTask = [BackgroundTaskManager sharedBackgroundTaskManager];
     [self.shareModel.bgTask beginNewBackgroundTask];
 }
@@ -158,8 +156,7 @@
         {
             continue;
         }
-        
-        //Select only valid location and also location with good accuracy
+
         if(newLocation!=nil&&theAccuracy>0
            &&theAccuracy<20000
            &&(!(theLocation.latitude==0.0&&theLocation.longitude==0.0))){
@@ -171,31 +168,25 @@
             [dict setObject:[NSNumber numberWithFloat:theLocation.latitude] forKey:@"latitude"];
             [dict setObject:[NSNumber numberWithFloat:theLocation.longitude] forKey:@"longitude"];
             [dict setObject:[NSNumber numberWithFloat:theAccuracy] forKey:@"theAccuracy"];
-            
-            //Add the vallid location with good accuracy into an array
-            //Every 1 minute, I will select the best location based on accuracy and send to server
+
             [self.shareModel.myLocationArray addObject:dict];
         }
     }
-    
-    //If the timer still valid, return it (Will not run the code below)
+
     if (self.shareModel.timer) {
         return;
     }
     
     self.shareModel.bgTask = [BackgroundTaskManager sharedBackgroundTaskManager];
     [self.shareModel.bgTask beginNewBackgroundTask];
-    
-    //Restart the locationMaanger after 1 minute
+
     NSLog(@"ATTENTION! Starting timer with update period: %@", [FMPApiController sharedInstance].updatePeriod);
     self.currentPeriod = [FMPApiController sharedInstance].updatePeriod.integerValue;
     self.shareModel.timer = [NSTimer scheduledTimerWithTimeInterval:[FMPApiController sharedInstance].updatePeriod.integerValue target:self
                                                            selector:@selector(restartLocationUpdates)
                                                            userInfo:nil
                                                             repeats:NO];
-    
-    //Will only stop the locationManager after 10 seconds, so that we can get some accurate locations
-    //The location manager will only operate for 10 seconds to save battery
+
     if (self.shareModel.delay10Seconds) {
         [self.shareModel.delay10Seconds invalidate];
         self.shareModel.delay10Seconds = nil;
@@ -209,7 +200,6 @@
 }
 
 
-//Stop the locationManager
 -(void)stopLocationDelayBy10Seconds{
     CLLocationManager *locationManager = [LocationTracker sharedLocationManager];
     [locationManager stopUpdatingLocation];
@@ -220,11 +210,10 @@
 
 - (void)locationManager: (CLLocationManager *)manager didFailWithError: (NSError *)error
 {
-   // NSLog(@"locationManager error:%@",error);
     
     switch([error code])
     {
-        case kCLErrorNetwork: // general, network-related error
+        case kCLErrorNetwork:
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error" message:@"Please check your network connection." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
@@ -244,12 +233,10 @@
 }
 
 
-//Send the location to Server
 - (void)updateLocationToServer {
     
     NSLog(@"updateLocationToServer");
     
-    // Find the best location from the array based on accuracy
     NSMutableDictionary * myBestLocation = [[NSMutableDictionary alloc]init];
     
     for(int i=0;i<self.shareModel.myLocationArray.count;i++){
@@ -265,8 +252,6 @@
     }
     NSLog(@"My Best location:%@",myBestLocation);
     
-    //If the array is 0, get the last location
-    //Sometimes due to network issue or unknown reason, you could not get the location during that  period, the best you can do is sending the last known location to the server
     if(self.shareModel.myLocationArray.count==0)
     {
         NSLog(@"Unable to get location, use the last known location");
@@ -300,7 +285,6 @@
         }];
     }
 
-    //After sending the location to the server successful, remember to clear the current array with the following code. It is to make sure that you clear up old location in the array and add the new locations from locationManager
     [self.shareModel.myLocationArray removeAllObjects];
     self.shareModel.myLocationArray = nil;
     self.shareModel.myLocationArray = [[NSMutableArray alloc]init];
@@ -310,7 +294,6 @@
 
     NSLog(@"postingLocationNotification");
 
-    // Find the best location from the array based on accuracy
     NSMutableDictionary * myBestLocation = [[NSMutableDictionary alloc]init];
 
     for(int i=0;i<self.shareModel.myLocationArray.count;i++){
@@ -326,8 +309,6 @@
     }
     NSLog(@"My Best location:%@",myBestLocation);
 
-    //If the array is 0, get the last location
-    //Sometimes due to network issue or unknown reason, you could not get the location during that  period, the best you can do is sending the last known location to the server
     if(self.shareModel.myLocationArray.count==0)
     {
         NSLog(@"Unable to get location, use the last known location");
@@ -345,12 +326,10 @@
 
     NSLog(@"Posted Notification: Latitude(%f) Longitude(%f) Accuracy(%f)",self.myLocation.latitude, self.myLocation.longitude,self.myLocationAccuracy);
 
-    //TODO: Your code to send the self.myLocation and self.myLocationAccuracy to your server
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:self.myLastLocation.latitude longitude:self.myLocation.longitude];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ManualModeLocationNotification" object:self userInfo:@{@"location" : loc}];
 
-    //After sending the location to the server successful, remember to clear the current array with the following code. It is to make sure that you clear up old location in the array and add the new locations from locationManager
     [self.shareModel.myLocationArray removeAllObjects];
     self.shareModel.myLocationArray = nil;
     self.shareModel.myLocationArray = [[NSMutableArray alloc]init];

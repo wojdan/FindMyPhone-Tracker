@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  Kontroler odpowiedzialny za logowanie użytkownika.
+ */
 @interface FMPLoginViewController : UIViewController <UITextFieldDelegate>
 
 @end

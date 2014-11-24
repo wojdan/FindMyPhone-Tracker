@@ -10,6 +10,9 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
+/**
+ *  Kontroler do testowania trackowania. Przy wdrożeniu wyłączony z aplikacji.
+ */
 @interface FMPTestTrackerViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate>
 
 @end

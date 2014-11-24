@@ -15,6 +15,12 @@
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
+@interface LocationTracker()
+
+@property (nonatomic) NSInteger currentPeriod;
+
+@end
+
 @implementation LocationTracker
 
 + (CLLocationManager *)sharedLocationManager {
@@ -36,6 +42,8 @@
         self.shareModel.myLocationArray = [[NSMutableArray alloc]init];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+
+        self.currentPeriod = [FMPApiController sharedInstance].updatePeriod.integerValue;
 	}
 	return self;
 }
@@ -179,6 +187,8 @@
     [self.shareModel.bgTask beginNewBackgroundTask];
     
     //Restart the locationMaanger after 1 minute
+    NSLog(@"ATTENTION! Starting timer with update period: %@", [FMPApiController sharedInstance].updatePeriod);
+    self.currentPeriod = [FMPApiController sharedInstance].updatePeriod.integerValue;
     self.shareModel.timer = [NSTimer scheduledTimerWithTimeInterval:[FMPApiController sharedInstance].updatePeriod.integerValue target:self
                                                            selector:@selector(restartLocationUpdates)
                                                            userInfo:nil
@@ -350,6 +360,16 @@
 
     [FMPApiController getDeviceSettingsWithCompletionHandler:^(BOOL success, NSError *error) {
         if (success) {
+
+            if (self.currentPeriod != [FMPApiController sharedInstance].updatePeriod.integerValue) {
+
+                [self stopLocationTracking];
+                [self startLocationTracking];
+
+            } else {
+                NSLog(@"Period is OK!!!!");
+            }
+
             NSLog(@"Settings got updated!");
         }
     }];

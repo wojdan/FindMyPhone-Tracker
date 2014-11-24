@@ -38,7 +38,7 @@ sudo gem install cocoapods
 ```
 #!
 pod setup
-pod update
+pod install
 ```
 
 ## Kompilacja ##

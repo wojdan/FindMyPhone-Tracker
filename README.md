@@ -1,7 +1,7 @@
 ![FindMyPhone Logo](https://bytebucket.org/zpi16ios/tracker/raw/193b95e3c611a60723adb8e9876359af807675f6/FindMyPhoneTracker/FindMyPhoneTracker/iconTracker%402x.png?token=48305a136a048a703c2a9576776928cbbd3f0c1b)
 # Opis aplikacji wraz z instrukcją dot. developmentu oraz kompilacji #
 
-Instrukcja dotyczy dowolnego systemu z rodziny OS X od wersji Maverics wzwyż.
+Instrukcja dotyczy dowolnego systemu z rodziny OS X od wersji Mavericks wzwyż.
 Instrukcja została pomyślnie przetestowana na surowym systemie OS X 10.9.5
 
 ## Ogólnie o aplikacji ##

@@ -1,4 +1,4 @@
-![FindMyPhone Logo](http://find-my-phone-api.herokuapp.com/static/img/logo-tracker.png)
+![FindMyPhone Logo](https://bytebucket.org/zpi16ios/tracker/raw/193b95e3c611a60723adb8e9876359af807675f6/FindMyPhoneTracker/FindMyPhoneTracker/iconTracker%402x.png?token=48305a136a048a703c2a9576776928cbbd3f0c1b)
 # Opis aplikacji wraz z instrukcją dot. developmentu oraz kompilacji #
 
 Instrukcja dotyczy dowolnego systemu z rodziny OS X od wersji Maverics wzwyż.

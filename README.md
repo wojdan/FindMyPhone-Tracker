@@ -45,4 +45,4 @@ pod update
 
 ## Kompilacja ##
 
-Do uruchomienia aplikacji potrzebny będzie system z w/w rodziny systemów OSX z zainstalowanym środowiskiem Xcode i iOS SDK. Aby zbudować aplikację, należy otworzyć plik projektu, następnie z zakładki ```Projekt``` wybrać opcję ```Run```. Budowanie aplikacji na symulatorze skutkuje w jej ograniczonych możliwościach ze względu na to, ze symulator nie jest wyposażony w prawdziwe serwisy lokalizacji, a jedynie je emuluje.
+Do uruchomienia aplikacji potrzebny będzie system z w/w rodziny systemów OSX z zainstalowanym środowiskiem Xcode i iOS SDK. Aby zbudować aplikację, należy otworzyć plik projektu, następnie z zakładki ```Projekt``` wybrać opcję ```Run```. Budowanie aplikacji na symulatorze skutkuje ograniczonymi możliwościami testowania ze względu na to, ze symulator nie jest wyposażony w prawdziwe serwisy lokalizacji, a jedynie je emuluje.

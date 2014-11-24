@@ -8,9 +8,8 @@ Instrukcja została pomyślnie przetestowana na surowym systemie OS X 10.9.5
 
 Jest to aplikacja trackująca (śledząca) systemu służącego do śledzenia telefonów o nazwie **FindMyPhone** przeznaczona na platformę [iOS](http://pl.wikipedia.org/wiki/IOS).
 
-**TODO** [Demonstracja interfejsu](http://www.appdemostore.com/demo?id=5347878478282752)
-
-[Repozytorium](https://bitbucket.org/zpi16ios/tracker)
+### [Demonstracja interfejsu](http://invis.io/3N1R1KG5M) ###
+### [Repozytorium](https://bitbucket.org/zpi16ios/tracker) ###
 
 Aplikacja:
 
